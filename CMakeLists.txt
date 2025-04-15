@@ -24,20 +24,22 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # Add all source files
 add_executable(opencvtest
     main.cpp
-    MainWindow.cpp
-    MainWindow.h
-    Node.cpp
-    Node.h
-    NodeSocket.cpp
-    NodeSocket.h
-    Connection.cpp
+    NodeEditor.cpp
+     NodeEditor.h
+    NodeCanvas.cpp 
+    NodeCanvas.h
+    NodeBase.cpp
+     NodeBase.h
+    Socket.cpp 
+    Socket.h
+    Connection.cpp 
     Connection.h
-    Nodes/InputNode.cpp
-    Nodes/InputNode.h
-    Nodes/BlurNode.cpp
-    Nodes/BlurNode.h
-    Nodes/OutputNode.cpp
-    Nodes/OutputNode.h
+    InputNode.cpp 
+    InputNode.h
+    BlurNode.cpp 
+    BlurNode.h
+    OutputNode.cpp 
+    OutputNode.h
 )
 
 # Link libraries

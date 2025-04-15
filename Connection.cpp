@@ -1,22 +1,20 @@
 #include "Connection.h"
-#include "NodeSocket.h"
+#include "Socket.h"
+#include<QPen>
 
-Connection::Connection(NodeSocket* start, NodeSocket* end) 
-    : startSocket(start), endSocket(end) {
-    updatePath();
+Connection::Connection(Socket* from, Socket* to)
+    : QGraphicsLineItem(), fromSocket(from), toSocket(to) {
+    setPen(QPen(Qt::darkGray, 2));
+    updatePosition();
+
+    from->connectTo(to);
+    to->connectTo(from);
 }
 
-void Connection::updatePath() {
-    QPointF startPos = startSocket->scenePos();
-    QPointF endPos = endSocket->scenePos();
-    
-    QPainterPath path;
-    path.moveTo(startPos);
-    qreal dx = endPos.x() - startPos.x();
-    qreal dy = endPos.y() - startPos.y();
-    path.cubicTo(startPos.x() + dx * 0.5, startPos.y(),
-                startPos.x() + dx * 0.5, endPos.y(),
-                endPos.x(), endPos.y());
-    
-    setPath(path);
+void Connection::updatePosition() {
+    if (fromSocket && toSocket) {
+        QPointF p1 = fromSocket->scenePos();
+        QPointF p2 = toSocket->scenePos();
+        setLine(QLineF(p1, p2));
+    }
 }

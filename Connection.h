@@ -1,13 +1,14 @@
-// Connection.h
 #pragma once
-#include <QGraphicsPathItem>
-#include "NodeSocket.h"
+#include <QGraphicsLineItem>
 
-class Connection : public QGraphicsPathItem {
+class Socket;
+
+class Connection : public QGraphicsLineItem {
 public:
-    Connection(NodeSocket* start, NodeSocket* end);
-    void updatePath();
+    Connection(Socket* from, Socket* to);
 
-    NodeSocket* startSocket;
-    NodeSocket* endSocket;
+    Socket* fromSocket;
+    Socket* toSocket;
+
+    void updatePosition();
 };
